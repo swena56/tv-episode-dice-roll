@@ -19,7 +19,7 @@
     "url": "https://github.com/swena56/tv-episode-dice-roll"
   },
   "scripts": {
-    "start": "npm api.js & react-scripts start",
+    "start": "node api.js & react-scripts start",
     "start-react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

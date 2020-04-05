@@ -17,12 +17,13 @@ class App extends Component {
     const cow = initialCow.moo
     this.setState({ cow })
   }
-
+  
   customCow = async evt => {
     evt.preventDefault()
     const text = this.state.text
-    const response = await fetch(`/api/cow/${text}`)
-    const custom = await response.json()
+    const response = await fetch(`/api/random/${text}`)
+    const custom = await response.json();
+    console.log(response);
     const cow = custom.moo
     this.setState({ cow, text: '' })
   }
@@ -34,17 +35,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h3>Text Cow. Moo</h3>
         <code>{this.state.cow}</code>
         <form onSubmit={this.customCow}>
-          <label>Custom Cow Text:</label>
           <input
             type="text"
             name="text"
             value={this.state.text}
             onChange={this.handleChange}
           />
-          <button type="submit">Show me a talking cow!</button>
+          <button type="submit">Search</button>
         </form>
       </div>
     )

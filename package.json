@@ -12,6 +12,8 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "cors": "^2.8.5",
+    "node-fetch": "^2.6.0",
     "morgan": "~1.9.1"
   },
   "repository": {
@@ -40,9 +42,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "cors": "^2.8.5",
-    "node-fetch": "^2.6.0"
   }
 }

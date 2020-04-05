@@ -7,7 +7,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:5000/search`)
+
+    fetch(`/search`)
       .then(res => res.json())
       .then(json => this.setState({ data: json }) )
   }

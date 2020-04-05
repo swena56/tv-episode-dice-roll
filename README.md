@@ -37,3 +37,23 @@ For more information about using Node.js on Heroku, see these Dev Center article
 - [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
 - [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
 - [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+
+
+https://www.themoviedb.org/settings/api/new/form?type=developer
+
+https://www.heroku.com/
+
+brew install heroku/brew/heroku
+
+https://github.com/
+
+Dice roll - shuffle
+- think of title
+- Multiple shows
+- display episodes
+- picks random episode
+- seaon num and episode numb
+
+- get api key - save in
+- heroku config:set TIMES=2
+

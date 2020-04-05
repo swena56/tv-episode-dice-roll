@@ -7,7 +7,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-
     fetch(`/search`)
       .then(res => res.json())
       .then(json => this.setState({ data: json }) )
@@ -18,7 +17,7 @@ class App extends Component {
     if( this.state.data && this.state.data.results ){
       return (
         <div>
-          {this.state.data.results.length} Matches for 'Law and Order'
+          Matches {this.state.data.results.length} for Law and Order
           <ul>
             {
             this.state.data.results.map(el => (

@@ -16,13 +16,6 @@ express()
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
   .use(cookieParser())
-  .use(cors())
-  .get('/', (req, res) => {
-    const query = encodeURI('law and order');
-    fetch(`https://api.themoviedb.org/3/search/tv?${base}&page=1&query=${query}`)
-      .then(response => response.json())
-      .then(data => res.send(JSON.stringify(data)) )
-  })
   .get('/search', (req, res) => {
     const query = encodeURI('law and order');
     fetch(`https://api.themoviedb.org/3/search/tv?${base}&page=1&query=${query}`)

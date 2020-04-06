@@ -45,18 +45,22 @@ if( process.env.API_KEY ){
         const first = data.results[0].name || '';
         const showId = data.results[0].id || 0;
         let match = '';
+        let season = {};
+        let episode = {};
         if( first && showId ){
           const response = await fetch(`https://api.themoviedb.org/3/tv/${showId}?${base}`);
           const showData = await response.json();
           const seasons = showData.seasons;
           if( seasons.length > 0 ){
             const randomSeason = await seasons[Math.floor(Math.random() * seasons.length)];
+            season = randomSeason;
             const randomEpisode = await Math.floor(Math.random() * (randomSeason.episode_count - 1));
             if( randomSeason.name && typeof randomEpisode === 'number' ){
               const response = await fetch(`https://api.themoviedb.org/3/tv/${showId}/season/${randomSeason.season_number}/episode/${randomEpisode}?${base}`);
               const episodeData = await response.json();
+              episode = episodeData;
               match = await `${randomSeason.name} episode ${randomEpisode} - ${episodeData.name}`;
-              console.log(match,randomSeason);
+              console.log(match,randomSeason,episodeData);
             }
           }
         }
@@ -65,9 +69,11 @@ if( process.env.API_KEY ){
           moo: cowsay.say({ 
             text: [ 
               `Found ${data.results.length} matching '${req.params.show}', using first one`,
-              ...data.results.map( o => o.name ), '', match
+              ...data.results.map( o => o.name ), '', first, match
             ].join("\n")
           }),
+          episode,
+          season,
         });
       } else {
         res.json({ 

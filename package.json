@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd client && npm install && npm run build",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "pkill node; node index.js & cd client/ ; npm start"
   },
   "repository": {
     "type": "git",

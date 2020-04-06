@@ -42,8 +42,8 @@ if( process.env.API_KEY ){
         const query  = encodeURI(req.params.show);
         const response = await fetch(`https://api.themoviedb.org/3/search/tv?${base}&page=1&query=${query}`)
         const data = await response.json();
-        const first = data.results[0].name || '';
-        const showId = data.results[0].id || 0;
+        const first = data && data.results && data.results[0] && data.results[0]['name'] ? data.results[0].name : false;
+        const showId = data && data.results && data.results[0] && data.results[0]['id'] ? data.results[0].id : false;
         let match = '';
         let season = {};
         let episode = {};
@@ -53,14 +53,16 @@ if( process.env.API_KEY ){
           const seasons = showData.seasons;
           if( seasons.length > 0 ){
             const randomSeason = await seasons[Math.floor(Math.random() * seasons.length)];
-            season = randomSeason;
             const randomEpisode = await Math.floor(Math.random() * (randomSeason.episode_count - 1));
-            if( randomSeason.name && typeof randomEpisode === 'number' ){
+            if( randomSeason && randomSeason.name && typeof randomEpisode === 'number' ){
               const response = await fetch(`https://api.themoviedb.org/3/tv/${showId}/season/${randomSeason.season_number}/episode/${randomEpisode}?${base}`);
               const episodeData = await response.json();
               episode = episodeData;
-              match = await `${randomSeason.name} episode ${randomEpisode} - ${episodeData.name}`;
-              console.log(match,randomSeason,episodeData);
+              season = randomSeason;
+              if( episodeData && episodeData.name ){
+                match = await `${randomSeason.name} episode ${randomEpisode} - ${episodeData.name}`;
+                console.log(match,randomSeason,episodeData);
+              }
             }
           }
         }
